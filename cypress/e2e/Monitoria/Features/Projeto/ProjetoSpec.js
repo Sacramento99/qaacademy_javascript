@@ -6,6 +6,7 @@ import { elementos } from "../../Pages/ProjetoPages";
 Given('que o usuario acessa o site Madeira Madeira', function () {
     const URL = "https://www.madeiramadeira.com.br";
     cy.visit(URL);
+    cy.viewport(1200,800);
 });
 
 When('pesquisa um Produto', function () {
@@ -33,11 +34,11 @@ Then ('o produto e adicionado com sucesso', function (){
 //cenário 3 
 
 When  ('excluo um produto do carrinho', function (){
-
+    cy.get(elementos.buttonExcluir,{timeout:10000}).click({force:true})
 })
 
 Then ('a quantidade de produtos fica zerada',function(){
-
+cy.get(elementos.mensagemCarrinhoVazio,{timeout:5000}).should("be.visible")
 })
 
 
